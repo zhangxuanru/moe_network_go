@@ -29,7 +29,7 @@ now = time.Now()
 nextTime = cxpr.Next(now)
 fmt.Println("当前时间 :",now,"--下一次执行时间为：",nextTime)
 
-if cxpr,err = cronexpr.Parse("*/5 * * * * *");err!=nil{
+if cxpr,err = cronexpr.Parse("*/2 * * * * * *");err!=nil{
 	fmt.Println("*/5 errors:",err)
 }
 now = time.Now()
@@ -38,9 +38,14 @@ nextTime = cxpr.Next(now)
 time.AfterFunc(nextTime.Sub(now), func() {
 	fmt.Println("被调度了")
 })
-time.Sleep( 10 * time.Second)
-cxpr = cxpr
-
+	ticker := time.NewTicker(nextTime.Sub(now))
+	for{
+		select {
+		case <-ticker.C:
+           fmt.Println("2 -----被调度了")
+		}
+	}
+	time.Sleep( 10 * time.Second)
 }
 
 
