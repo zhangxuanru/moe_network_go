@@ -38,5 +38,5 @@ func main()  {
 	cancelFunc()
 
 	res = <- resultChan
-	fmt.Println("output",res.output,"error:",res.err)
+	fmt.Println("output:",res.output,"error:",res.err)
 }
