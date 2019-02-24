@@ -11,7 +11,7 @@ func main()  {
 		output []byte
 		err error
 	)
-	cmd = exec.Command("/bin/bash", "-c", "ls -l")
+	cmd = exec.Command("/bin/bash", "-c", "ls /home/zxr/ -l")
 	if output,err = cmd.CombinedOutput();err!=nil{
 		fmt.Println("error:",err)
 		return
