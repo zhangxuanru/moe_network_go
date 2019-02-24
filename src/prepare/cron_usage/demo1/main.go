@@ -27,8 +27,18 @@ if cxpr,err = cronexpr.Parse("*/5 * * * *");err!=nil{
 now = time.Now()
 //求下一次执行时间 
 nextTime = cxpr.Next(now)
-fmt.Println("下一次执行时间为：",nextTime)
+fmt.Println("当前时间 :",now,"--下一次执行时间为：",nextTime)
 
+if cxpr,err = cronexpr.Parse("*/5 * * * * *");err!=nil{
+	fmt.Println("*/5 errors:",err)
+}
+now = time.Now()
+nextTime = cxpr.Next(now)
+//定时期调度
+time.AfterFunc(nextTime.Sub(now), func() {
+	fmt.Println("被调度了")
+})
+time.Sleep( 10 * time.Second)
 cxpr = cxpr
 
 }
