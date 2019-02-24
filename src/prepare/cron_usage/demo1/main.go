@@ -38,8 +38,9 @@ nextTime = cxpr.Next(now)
 time.AfterFunc(nextTime.Sub(now), func() {
 	fmt.Println("被调度了")
 })
+//定时期调度
 	ticker := time.NewTicker(nextTime.Sub(now))
-	for{
+ 	for{
 		select {
 		case <-ticker.C:
            fmt.Println("2 -----被调度了")
